@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 03, 2020 at 10:10 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Jan 04, 2020 at 05:26 AM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -36,8 +36,9 @@ CREATE TABLE `posts` (
   `departure` datetime NOT NULL,
   `vehicle` text NOT NULL,
   `seats` int(255) NOT NULL,
-  `contact` int(10) NOT NULL,
+  `contact` int(255) NOT NULL,
   `vehicle_id` varchar(255) NOT NULL,
+  `price` int(10) NOT NULL,
   `selected` text DEFAULT NULL,
   `available` tinyint(4) NOT NULL DEFAULT 1,
   `posted_at` datetime NOT NULL DEFAULT current_timestamp()
@@ -47,13 +48,14 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `user_id`, `source`, `destination`, `departure`, `vehicle`, `seats`, `contact`, `vehicle_id`, `selected`, `available`, `posted_at`) VALUES
-(3, 9, 'biratnagar', 'butwal', '2019-12-18 07:07:07', 'Bike', 1, 1234567890, 'ba 1 pa 1234', '[11,11]', 1, '2019-12-30 20:08:43'),
-(4, 8, 'janakpur', 'bhaktapur', '2020-01-15 13:05:00', 'car', 3, 1234567890, 'ba 1 pa 1234', '[14,14]', 1, '2019-12-30 22:11:27'),
-(5, 10, 'dharan', 'urlabari', '2019-12-31 22:55:00', 'Bike', 1, 1234567890, 'ba 1 pa 1234', '[11,11,14,14]', 1, '2019-12-30 22:31:52'),
-(12, 14, 'bkt', 'pok', '2020-01-08 00:34:00', 'jeep', 2, 1234567890, 'ba 1 pa 1234', '[11,11,11,11]', 1, '2020-01-01 23:27:11'),
-(14, 11, 'ktm', 'bkt', '2020-01-22 20:00:00', 'tank', 12, 1234567876, 'ba 1 pa 1276', NULL, 1, '2020-01-03 12:11:42'),
-(15, 11, 'brt', 'okr', '2020-01-16 22:07:00', 'apacge', 187235, 123654, 'ba 1 pa 4567', NULL, 0, '2020-01-03 13:40:10');
+INSERT INTO `posts` (`id`, `user_id`, `source`, `destination`, `departure`, `vehicle`, `seats`, `contact`, `vehicle_id`, `price`, `selected`, `available`, `posted_at`) VALUES
+(3, 9, 'biratnagar', 'butwal', '2019-12-18 07:07:07', 'Bike', 1, 1234567890, 'ba 1 pa 1234', 0, '[]', 1, '2019-12-30 20:08:43'),
+(4, 8, 'janakpur', 'bhaktapur', '2020-01-15 13:05:00', 'car', 1, 1234567890, 'ba 1 pa 1234', 0, '[14,14]', 1, '2019-12-30 22:11:27'),
+(5, 10, 'dharan', 'urlabari', '2019-12-31 22:55:00', 'Bike', 1, 1234567890, 'ba 1 pa 1234', 0, '[14,14]', 1, '2019-12-30 22:31:52'),
+(12, 14, 'bkt', 'pok', '2020-01-08 00:34:00', 'jeep', 0, 1234567890, 'ba 1 pa 1234', 0, '[11,11,11,11,11,11]', 0, '2020-01-01 23:27:11'),
+(14, 11, 'ktm', 'bkt', '2020-01-14 10:05:00', 'tank', 12, 1234567876, '12', 200, NULL, 0, '2020-01-03 12:11:42'),
+(15, 11, 'brt', 'okr', '2020-01-16 22:07:00', 'apacge', 187235, 123654, 'ba 1 pa 4567', 0, NULL, 0, '2020-01-03 13:40:10'),
+(16, 11, 'Kathmandu', 'Pokhara', '2020-01-22 22:05:00', 'Car', 5, 98151617, 'ko 1 pa 1234', 1555, NULL, 0, '2020-01-04 09:57:42');
 
 -- --------------------------------------------------------
 
@@ -106,7 +108,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
